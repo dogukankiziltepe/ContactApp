@@ -25,7 +25,7 @@ export default function LoginScreen({navigation}:StackScreenProps<any>) {
       <View style={styles.inputView} >
         <TextInput
           style={styles.inputText}
-          placeholder="Email..."
+          placeholder="Username..."
           placeholderTextColor="#003f5c"
           onChangeText={text => setEmail(text)}
         />
@@ -39,11 +39,8 @@ export default function LoginScreen({navigation}:StackScreenProps<any>) {
           onChangeText={text => setPassword(text)}
         />
       </View>
-      <TouchableOpacity>
-        <Text style={styles.forgot}>Forgot Password?</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.loginBtn}>
-        <Text onPress={() => Login()} style={styles.loginText}>LOGIN</Text>
+      <TouchableOpacity onPress={() => Login()} style={styles.loginBtn}>
+        <Text style={styles.loginText}>LOGIN</Text>
       </TouchableOpacity>
       <TouchableOpacity  onPress={() => navigation.navigate("Register")}>
         <Text style={styles.loginText}>Signup</Text>

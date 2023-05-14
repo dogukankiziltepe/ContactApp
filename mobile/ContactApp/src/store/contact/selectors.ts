@@ -20,4 +20,3 @@ export const getUserContactsError = () => {
     const contactsError = useSelector((state: RootState) => state.contact.error);
     return contactsError;
     }
-

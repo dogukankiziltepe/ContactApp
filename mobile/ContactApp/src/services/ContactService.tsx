@@ -25,5 +25,4 @@ export default class ContactService {
     async deletePhoneNumber(id:number) {
         return client.get(getUrlCreate(apiConfig.prefixes.contact.deletePhoneNumber)+`/${id}`);
     }
-    
 }

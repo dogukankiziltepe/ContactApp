@@ -4,7 +4,6 @@ import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-nativ
 import { getUserContactDetails } from '../../../store/contact/selectors';
 import { useDispatch } from 'react-redux';
 import { castThunkAction } from '../../../helpers/casting';
-import { getUser } from '../../../store/auth/selectors';
 import { getContactDetails, getContacts } from '../../../store/thunks/contact-thunks';
 import { StackScreenProps } from '@react-navigation/stack';
 import { PhoneNumber } from '../../../types/PhoneNumber';

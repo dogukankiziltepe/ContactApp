@@ -1,5 +1,5 @@
 import { User } from "../../types/User";
-import {SET_USER, SET_USER_ERROR, SET_USER_LOADING, SET_USER_LOGOUT, SET_USER_LOGOUT_ERROR, SET_USER_LOGOUT_SUCCESS, SET_USER_REGISTER, SET_USER_REGISTER_ERROR, SET_USER_REGISTER_SUCCESS, SET_USER_SUCCESS} from "./types";
+import {SET_ALL_USERS, SET_ALL_USERS_SUCCESS, SET_UPDATE_USER_SUCCESS, SET_USER, SET_USER_ERROR, SET_USER_LOADING, SET_USER_LOGOUT, SET_USER_LOGOUT_ERROR, SET_USER_LOGOUT_SUCCESS, SET_USER_REGISTER, SET_USER_REGISTER_ERROR, SET_USER_REGISTER_SUCCESS, SET_USER_SUCCESS} from "./types";
 
 export function setUser(payload: User) {
     return {
@@ -65,4 +65,18 @@ export function setUserRegisterError(payload: string) {
         type: SET_USER_REGISTER_ERROR,
         payload,
     };
+}
+
+export function setUserAllUsersSuccess(payload: User[]){
+    return {
+        type: SET_ALL_USERS_SUCCESS,
+        payload
+    }
+}
+
+export function SetUpdateUserSuccess(payload: User){
+    return {
+        type: SET_UPDATE_USER_SUCCESS,
+        payload
+    }
 }

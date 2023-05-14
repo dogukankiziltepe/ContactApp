@@ -11,7 +11,10 @@ import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { rootReducer } from './src/store/reducer';
 import RootNavigation from './src/navigation/rootNavigation';
+// @ts-ignore
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
+Ionicons.loadFont().then();
 const store = createStore(rootReducer, applyMiddleware(thunk));
 function App(): JSX.Element {
   return (

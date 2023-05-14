@@ -22,6 +22,14 @@ module.exports = (sequelize, DataTypes) => {
 			type: DataTypes.STRING,
 			allowNull: true
 		},
+		status:{
+			type: DataTypes.ENUM('active','passive','deleted'),
+			allowNull: false
+		},
+		role:{
+			type: DataTypes.ENUM('admin','user'),
+			allowNull: false
+		}
   });
   User.associate = function(models) {
     User.hasMany(models.Contact,{foreignKey: 'userID'});

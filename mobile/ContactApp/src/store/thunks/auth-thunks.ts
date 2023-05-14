@@ -1,7 +1,8 @@
 import AuthService from "../../services/AuthService";
 import { LoginRequest, RegisterRequest } from "../../types/AuthRequest";
 import asyncStorage from "../../utils/asyncStorage";
-import { setUserLoading, setUser, setUserSuccess, setUserError, setUserLogoutSuccess, setUserLogoutError, setUserRegister, setUserRegisterSuccess } from "../auth/actions";
+import { setUserLoading, setUser, setUserSuccess, setUserError, setUserLogoutSuccess, setUserLogoutError, setUsers, setUserRegisterSuccess, SetUpdateUserSuccess, setUserAllUsersSuccess } from "../auth/actions";
+import { setContactLoading, setContacts, setContactsError } from "../contact/actions";
 const authService = new AuthService();
 
 
@@ -55,5 +56,63 @@ export function logout():any {
         finally {
             dispatch(setUserLoading(false));
         }
+    };
+}
+
+export function getAllUsers ():any{
+    return async (dispatch: any) => {
+        dispatch(setUserLoading(true));
+        const response = await authService.getAllUsers();
+        if (response.httpStatus === 200) {
+            dispatch(setUserAllUsersSuccess(response.data));
+        }
+        else { 
+            dispatch(setContactsError(response.data));
+        }
+        dispatch(setContactLoading(false));
+    }
+    
+}
+
+export function getUserDetails (userId: number):any{
+    return async (dispatch: any) => {
+        dispatch(setUserLoading(true));
+        const response = await authService.getUserDetails(userId);
+        if (response.httpStatus === 200) {
+            dispatch(SetUpdateUserSuccess(response.data));
+        }
+        else { 
+            dispatch(setUserError(response.data));
+        }
+        dispatch(setUserLoading(false));
+    }
+    
+}
+
+export function updateUser (userId: number, request: RegisterRequest):any{
+    return async (dispatch: any) => {
+        dispatch(setUserLoading(true));
+        const response = await authService.updateUser(userId, request);
+        if (response.httpStatus === 200) {
+            dispatch(SetUpdateUserSuccess(response.data));
+        }
+        else { 
+            dispatch(setUserError(response.data));
+        }
+        dispatch(setUserLoading(false));
+    }
+}
+
+export function deleteUser(userId: number):any {
+    return async (dispatch: any) => {
+        dispatch(setUserLoading(true));
+        const response = await authService.deleteUser(userId);
+        if (response.httpStatus === 200) {
+            return null;
+        }
+        else {
+            dispatch(setUserError(response.data));
+        }
+        dispatch(setUserLoading(false));
     };
 }

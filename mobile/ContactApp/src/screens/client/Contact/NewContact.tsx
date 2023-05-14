@@ -6,8 +6,9 @@ import { useDispatch } from 'react-redux';
 import { castThunkAction } from '../../../helpers/casting';
 import { addContact } from '../../../store/thunks/contact-thunks';
 import { getUser } from '../../../store/auth/selectors';
+import { StackScreenProps } from '@react-navigation/stack';
 
-export default function NewContactScreen() {
+export default function NewContactScreen({navigation,route}:StackScreenProps<any>) {
     const [name, setName] = React.useState('');
     const [surname, setSurname] = React.useState('');
     const [phone, setPhone] = React.useState([""]);
@@ -15,14 +16,19 @@ export default function NewContactScreen() {
     const user = getUser();
     const createContact = () => {
       castThunkAction<any>(dispatch(addContact({userID:user?.id,name,surname,phoneNumbers:phone}))).then(() => {
-        console.log("contact added");
+        setName('')
+        setSurname('')
+        setPhone([""])
+        navigation.navigate("Contact List");
       });
     }
   return (
     <View style={styles.container}>
+      <Text style={styles.headerText}>Create Contact</Text>
       <View style={styles.inputView} >
         <TextInput
           style={styles.inputText}
+          value={name}
           placeholder="Name..."
           placeholderTextColor="#003f5c"
           onChangeText={text => setName(text)}
@@ -31,6 +37,7 @@ export default function NewContactScreen() {
       <View style={styles.inputView} >
         <TextInput
           style={styles.inputText}
+          value={surname}
           placeholder="Surname..."
           placeholderTextColor="#003f5c"
           onChangeText={text => setSurname(text)}
@@ -88,5 +95,16 @@ const styles = StyleSheet.create({
   },
   loginText:{
     color:"white"
+  },
+  deleteCross:{
+    color:"white",
+    position:"absolute",
+    right:20
+  },
+  headerText:{
+    color:"white",
+    fontSize:20,
+    marginBottom:20,
+    marginTop:20
   }
 });

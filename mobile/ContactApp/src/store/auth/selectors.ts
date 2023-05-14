@@ -23,3 +23,14 @@ export const getError = () => {
     const error = useSelector((state: RootState) => state.auth.error);
     return error;
 }
+
+export const getUsers = () => {
+    const users = useSelector((state: RootState) => state.auth.users);
+    return users;
+}
+
+export const getUpdateUser = () => {
+    const updateUser = useSelector((state: RootState) => state.auth.updateUser);
+    return updateUser;
+}
+

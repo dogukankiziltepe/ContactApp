@@ -7,14 +7,14 @@ const router = express.Router()
 
 //signup endpoint
 //passing the middleware function to the signup
-router.post('/addContact', userAuth.authenticateToken, createContact)
+router.post('/addContact', userAuth.authenticateToken(), createContact)
 
 //login route
-router.get('/getContacts/:userId', getContacts )
+router.get('/getContacts/:userId',  userAuth.authenticateToken(),getContacts )
 
-router.get('/getContactDetails/:id', getContact )
+router.get('/getContactDetails/:id', userAuth.authenticateToken(), getContact )
 
 //delete contact route get contact id from params
-router.delete('/deleteContact/:contactId', userAuth.authenticateToken, deleteContact )
+router.delete('/deleteContact/:contactId', userAuth.authenticateToken(), deleteContact )
 
 module.exports = router

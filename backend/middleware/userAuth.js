@@ -40,7 +40,7 @@ const jwt = require('jsonwebtoken');
  }
 };
 
-function authenticateToken(req, res, next) {
+const authenticateToken = (role = "user") => (req, res, next) => {
   const authHeader = req.headers['authorization']
   const token = authHeader && authHeader.split(' ')[1]
 
@@ -50,9 +50,18 @@ function authenticateToken(req, res, next) {
     console.log(err)
 
     if (err) return res.sendStatus(403)
-
+    if(role === "admin" && user.role === role){
+      const User = db.User.findOne({
+        where: {
+          id: user.id,
+          role: 'admin'
+        },
+      });
+      if(User === null){
+        return res.sendStatus(403)
+      }
+    }
     req.user = user
-
     next()
   })
 }

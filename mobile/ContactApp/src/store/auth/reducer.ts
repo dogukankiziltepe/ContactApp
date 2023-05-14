@@ -1,10 +1,12 @@
-import { AuthStore, AuthStoreTypes, SET_USER, SET_USER_ERROR, SET_USER_LOADING, SET_USER_LOGOUT, SET_USER_LOGOUT_ERROR, SET_USER_LOGOUT_SUCCESS, SET_USER_REGISTER, SET_USER_REGISTER_ERROR, SET_USER_REGISTER_LOADING, SET_USER_REGISTER_SUCCESS, SET_USER_SUCCESS } from './types';
+import { AuthStore, AuthStoreTypes, SET_ALL_USERS_ERROR, SET_ALL_USERS_SUCCESS, SET_UPDATE_USER, SET_UPDATE_USER_ERROR, SET_UPDATE_USER_SUCCESS, SET_USER, SET_USER_ERROR, SET_USER_LOADING, SET_USER_LOGOUT, SET_USER_LOGOUT_ERROR, SET_USER_LOGOUT_SUCCESS, SET_USER_REGISTER, SET_USER_REGISTER_ERROR, SET_USER_REGISTER_LOADING, SET_USER_REGISTER_SUCCESS, SET_USER_SUCCESS } from './types';
 
 const initialState: AuthStore = {
     user: null,
     loading: false,
     error: null,
     isAuthenticated: false,
+    users: null,
+    updateUser: null,
 };
 
 export function authReducer(state = initialState, action: AuthStoreTypes): AuthStore {
@@ -63,7 +65,27 @@ export function authReducer(state = initialState, action: AuthStoreTypes): AuthS
                 ...state,
                 loading: action.payload,
             };
+        case SET_ALL_USERS_SUCCESS:
+            return {
+                ...state,
+                users: action.payload,
+            }
+        case SET_ALL_USERS_ERROR:
+            return {
+                ...state,
+                error: action.payload,
+            }
+        case SET_UPDATE_USER_SUCCESS:
+            return {
+                ...state,
+                updateUser: action.payload,
+            }
+        case SET_UPDATE_USER_ERROR:
+            return {
+                ...state,
+                error: action.payload,
+            }
         default:
             return state;
-}
+    }
 }

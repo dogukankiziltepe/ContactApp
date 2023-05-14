@@ -4,6 +4,10 @@ const prefixes = {
   auth: {
     login: "users/login",
     register: "users/signup",
+    getAllUsers: "users/getallusers",
+    getUserDetails: "users/getuser",
+    updateUser: "users/updateUser",
+    deleteUser: "users/deleteUser",
   },
   contact:{
     getContacts: "contacts/getContacts",

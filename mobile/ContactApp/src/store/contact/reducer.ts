@@ -1,10 +1,11 @@
-import { ADD_NEW_CONTACT, ADD_NEW_CONTACT_ERROR, ADD_NEW_CONTACT_SUCCESS, ADD_NEW_NUMBERS_TO_CONTACT, ADD_NEW_NUMBERS_TO_CONTACT_ERROR, ADD_NEW_NUMBERS_TO_CONTACT_SUCCESS, ContactStore, SET_CONTACT_DETAILS, SET_USER_CONTACTS, SET_USER_CONTACTS_ERROR, CONTACTS_LOADING, SET_USER_CONTACTS_SUCCESS } from "./types";
+import { ADD_NEW_CONTACT, ADD_NEW_CONTACT_ERROR, ADD_NEW_CONTACT_SUCCESS, ADD_NEW_NUMBERS_TO_CONTACT, ADD_NEW_NUMBERS_TO_CONTACT_ERROR, ADD_NEW_NUMBERS_TO_CONTACT_SUCCESS, ContactStore, SET_CONTACT_DETAILS, SET_USER_CONTACTS, SET_USER_CONTACTS_ERROR, CONTACTS_LOADING, SET_USER_CONTACTS_SUCCESS} from "./types";
 import { ContactStoreTypes } from "./types";
 const initialState: ContactStore = {
     contacts: null,
     contactDetails: null,
     loading: false,
     error: null,
+    users: null,
 };
 
 export function contactReducer(state = initialState, action:ContactStoreTypes): ContactStore {

@@ -1,4 +1,5 @@
 import { Contact } from "../../types/Contact";
+import { User } from "../../types/User";
 
 export const SET_USER_CONTACTS = "SET_USER_CONTACTS";
 export const SET_USER_CONTACTS_SUCCESS = "SET_USER_CONTACTS_SUCCESS";
@@ -17,6 +18,7 @@ export interface ContactStore {
     contactDetails: Contact | null;
     loading: boolean;
     error: string | null;
+    users: User[] | null;
 }
 
 export interface SetUserContactsAction {
@@ -60,6 +62,9 @@ export interface AddNewNumbersToContactErrorAction {
     type: typeof ADD_NEW_NUMBERS_TO_CONTACT_ERROR;
     payload: string;
 }
+
+
+
 
 
 export type ContactStoreTypes = SetUserContactsAction | SetUserContactsSuccessAction | SetUserContactsErrorAction | ContactsLoadingAction | SetContactDetailsAction | AddNewContactAction | AddNewContactSuccessAction | AddNewContactErrorAction | AddNewNumbersToContactAction | AddNewNumbersToContactSuccessAction | AddNewNumbersToContactErrorAction;
